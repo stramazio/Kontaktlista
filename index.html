@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontaktlista</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <!-- Mörkt läge-knapp -->
+  <button id="darkModeBtn">🌙</button>
+  
+  <header>
+    <h1>Kontaktlista</h1>
+  </header>
+
+  <main>
+    <form id="contactForm">
+      <input type="text" id="firstName" placeholder="Förnamn" required>
+      <input type="text" id="lastName" placeholder="Efternamn" required>
+      <input type="text" id="phone" placeholder="Telefonnummer" required>
+      <input type="email" id="email" placeholder="E-post" required>
+      <button type="submit">Lägg till kontakt</button>
+    </form>
+
+    <input type="text" id="search" class="searchInput" placeholder="Sök kontakter...">
+
+    <button id="deleteAllBtn">🗑️ Radera alla kontakter</button>
+
+    <p>Antal kontakter: <span id="contactCount">0</span></p>
+
+    <div id="contactsContainer"></div>
+  </main>
+
+  <div id="toast"></div>
+
+  <!-- Popup för "Radera alla kontakter" -->
+  <div id="deleteAllPopup" class="popup">
+    <div class="popup-content">
+      <p>Är du säker på att du vill radera alla kontakter?</p>
+      <div class="popup-buttons">
+        <button id="confirmDeleteAll">Ja</button>
+        <button id="cancelDeleteAll">Nej</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup för "Radera en kontakt" -->
+<div id="deleteOnePopup" class="popup">
+  <div class="popup-content">
+    <p>Är du säker på att du vill radera denna kontakt?</p>
+    <div class="popup-buttons">
+      <button id="confirmDeleteOne">Ja</button>
+      <button id="cancelDeleteOne">Nej</button>
+    </div>
+  </div>
+</div>
+
+  <footer>
+    <p>Kontaktlista med JavaScript</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

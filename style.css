@@ -1,0 +1,415 @@
+/* Grundläggande styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #a8edea, #fed6e3);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+  padding: 30px 20px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+header h1 {
+  color: #004d40; 
+  font-size: 2rem;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+main {
+  flex: 1;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  background: rgba(255,255,255,0.7);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+input {
+  flex: 1 1 48%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #00796b;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #004d40;
+  box-shadow: 0 0 12px #26a69a;
+  outline: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 2px solid #00796b;
+  font-size: 16px;
+}
+
+.searchInput:focus {
+  border-color: #004d40;
+  box-shadow: 0 0 12px #26a69a;
+  outline: none;
+}
+
+/* Alla knappar - ingen pulsering som standard */
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Endast "Lägg till kontakt"-knappen pulserar */
+form button {
+  background-color: #00796b;
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+/* Hover för Lägg till kontakt */
+form button:hover {
+  background-color: #1b5e20;
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Radera alla-knappen */
+#deleteAllBtn {
+  background-color: #D32F2F;
+  color: white;
+  margin-bottom: 15px;
+  
+}
+
+/* Hover för Radera alla */
+#deleteAllBtn:hover {
+  background-color: #8e0000;
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+#contactsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contactCard {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 15px;
+  background: #e8f5e9;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  font-size: 16px;
+  opacity: 0;
+  transform: scale(0.9);
+  position: relative;
+}
+
+.contactCard.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.contactCard:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.contactCard.remove {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.5s ease;
+}
+
+.contactCard .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #004d40;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+/* Knappar på kortet */
+.card-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-buttons button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-btn {
+  background-color: #FFC107;
+  color: #000;
+  font-weight: bold;
+}
+
+.edit-btn:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px #000000, 0 0 20px #000000;
+}
+
+.delete-btn {
+  background-color: #F44336;
+  color: #fff;
+  font-weight: bold;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px #000000, 0 0 20px #000000;
+}
+
+/* Toast-meddelanden */
+#toast {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: #00796b;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 1000;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.popup-buttons button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#confirmDeleteAll {
+  background-color: #38ef1c;
+  color: white;
+}
+
+#confirmDeleteAll:hover {
+  background-color: #1b5e20;
+  transform: scale(1.1);
+}
+
+#cancelDeleteAll {
+  background-color: #ed0909;
+  color: white;
+}
+
+#cancelDeleteAll:hover {
+  background-color: #8e0000;
+  transform: scale(1.1);
+}
+
+/* Popup-knappar för radering av EN kontakt */
+#confirmDeleteOne {
+  background-color: #09e914;
+  color: white;
+}
+
+#confirmDeleteOne:hover {
+  background-color: #1b5e20;
+  transform: scale(1.1);
+}
+
+#cancelDeleteOne {
+  background-color: #f10707;
+  color: white;
+}
+
+#cancelDeleteOne:hover {
+  background-color: #8e0000;
+  transform: scale(1.1);
+}
+
+/* Badge-stil för antal kontakter */
+#contactCount {
+  font-weight: bold;
+  color: #004d40;
+  font-size: 1.3rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-left: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px 0;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+footer p {
+  font-size: 1.1rem;
+  color: #004d40;
+  font-weight: 500;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Pulse-animation för "Lägg till kontakt"-knappen */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Dark mode toggle button */
+#darkModeBtn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #00796b;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 1000;
+  transition: all 0.2s ease;
+}
+
+#darkModeBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #000;
+}
+
+/* Mörkt läge */
+body.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+/* Bakgrund + text på header, footer, formulär och popup */
+body.dark-mode header,
+body.dark-mode footer,
+body.dark-mode form,
+body.dark-mode .popup-content {
+  background: rgba(40, 40, 40, 0.85);
+  color: #f0f0f0;
+}
+
+/* Kontaktkort i dark mode - vit kant */
+body.dark-mode .contactCard {
+  border: 2px solid #ffffff; /* vit kant */
+  color: #f0f0f0;           /* behåll textfärg för dark mode */
+  background: #2c2c2c;      /* behåll mörk bakgrund */
+  transition: all 0.3s ease;
+}
+
+/* Avatar text */
+body.dark-mode .contactCard .avatar {
+  color: #ffffff;
+}
+
+/* Formulär input + sökfält */
+body.dark-mode input,
+body.dark-mode .searchInput {
+  background: #2c2c2c;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode .searchInput::placeholder {
+  color: #cccccc;
+}
+
+/* Popup-knappar text */
+body.dark-mode #confirmDeleteAll,
+body.dark-mode #cancelDeleteAll,
+body.dark-mode #confirmDeleteOne,
+body.dark-mode #cancelDeleteOne {
+  color: #ffffff;
+}
+
+
