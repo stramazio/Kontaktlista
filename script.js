@@ -37,7 +37,7 @@ function getColorFromLetter(letter) {
   return colors[index];
 }
 
-// Toast-meddelande
+// Toast meddelande
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add('show');
@@ -174,7 +174,7 @@ confirmDeleteAll.addEventListener('click', () => {
 // Bekräftelse för radering av enskild kontakt
 cancelDeleteOne.addEventListener('click', () => {
   contactToDelete = null;               // Nollställer vald kontakt
-  deleteOnePopup.style.display = 'none'; // Stänger popup-rutan
+  deleteOnePopup.style.display = 'none'; // Stänger popup rutan
 });
 
 confirmDeleteOne.addEventListener('click', () => {
@@ -185,7 +185,7 @@ confirmDeleteOne.addEventListener('click', () => {
     showToast("Kontakt raderad!");
   }
   contactToDelete = null;               // Rensar temporär variabel
-  deleteOnePopup.style.display = 'none'; // Stänger popup-rutan
+  deleteOnePopup.style.display = 'none'; // Stänger popuprutan
 });
 
 const darkModeBtn = document.getElementById('darkModeBtn');
